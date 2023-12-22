@@ -1,7 +1,7 @@
 .SECONDEXPANSION :
 
 
-sources := src/cc/donm/hello/Hello.java
+sources := src/cc/donm/igpay/Igpay.java
 
 classes := $(patsubst src/%.java,bin/%.class, $(sources))
 
@@ -12,7 +12,7 @@ all : $(classes)
 
 .PHONY : run
 run : all
-	java -cp bin cc.donm.hello.Hello
+	java -cp bin cc.donm.igpay.Igpay
 
 
 .PHONY : clean
