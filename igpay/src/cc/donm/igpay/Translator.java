@@ -1,5 +1,7 @@
 package cc.donm.igpay;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,8 +26,8 @@ public class Translator {
         return text;
     }
 
-    public void run() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public void run(InputStream input, PrintStream output) {
+        try (Scanner scanner = new Scanner(input)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 var tokens = tokenize(line);
@@ -38,7 +40,7 @@ public class Translator {
                         var space = ((Space) token).space();
                         description = String.format("space: '%s'", space);
                     }
-                    System.out.println(description);
+                    output.println(description);
                 }
             }
         } catch (Exception e) {

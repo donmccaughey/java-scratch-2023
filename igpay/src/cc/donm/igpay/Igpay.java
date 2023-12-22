@@ -5,7 +5,7 @@ public class Igpay {
         System.out.println("Ellohay, orldway!");
 
         Translator translator = new Translator();
-        translator.run();
+        translator.run(System.in, System.out);
 
         System.out.println("Oodbyegay, orldway!");
     }
