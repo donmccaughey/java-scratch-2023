@@ -8,40 +8,74 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Translator {
-    public static final Pattern WORD_SPLIT = Pattern.compile("\\w+|\\W+");
+    public static final Pattern SPLIT = Pattern.compile("\\w+|\\W+");
+
+    public static boolean isVowel(char ch) {
+        var lower = Character.toLowerCase(ch);
+        return switch (lower) {
+            case 'a', 'e', 'i', 'o', 'u' -> true;
+            default -> false;
+        };
+    }
 
     public static List<Text> tokenize(String line) {
         var text = new ArrayList<Text>();
-        var matcher = WORD_SPLIT.matcher(line);
+        var matcher = SPLIT.matcher(line);
         while (matcher.find()) {
-            Text token = null;
             var match = matcher.group();
             if (match.matches("\\w+")) {
-                token = new Word(match);
+                text.add(new Word(match));
             } else {
-                token = new Space(match);
+                text.add(new Space(match));
             }
-            text.add(token);
         }
         return text;
+    }
+
+    public static String toPigLatin(String word) {
+        if (word.isEmpty()) {
+            return word;
+        }
+
+        var first = word.charAt(0);
+        if (isVowel(first)) {
+            return word + "way";
+        } else {
+            if (word.length() == 1) {
+                return word + "ay";
+            }
+            if (Character.isUpperCase(first)) {
+                return word.substring(1, 2).toUpperCase()
+                        + word.substring(2) 
+                        + Character.toLowerCase(first) + "ay";
+            } else {
+                return word.substring(1) + first + "ay";
+            }
+        }
+    }
+
+    public static String translate(Text text) {
+        if (text instanceof Word) {
+            var word = ((Word) text).word();
+            return toPigLatin(word);
+        } else if (text instanceof Space) {
+            return ((Space) text).space();
+        }
+        throw new RuntimeException(
+                String.format("Unexpected class for text '%s': %s",
+                        text, text.getClass())
+        );
     }
 
     public void run(InputStream input, PrintStream output) {
         try (Scanner scanner = new Scanner(input)) {
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+                var line = scanner.nextLine();
                 var tokens = tokenize(line);
                 for (var token : tokens) {
-                    String description = null;
-                    if (token instanceof Word) {
-                        var text = ((Word) token).word();
-                        description = String.format("word: '%s'", text);
-                    } else {
-                        var space = ((Space) token).space();
-                        description = String.format("space: '%s'", space);
-                    }
-                    output.println(description);
+                    output.print(translate(token));
                 }
+                output.println();
             }
         } catch (Exception e) {
             e.printStackTrace();
