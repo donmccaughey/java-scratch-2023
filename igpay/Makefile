@@ -1,7 +1,9 @@
 .SECONDEXPANSION :
 
 
-sources := src/cc/donm/igpay/Igpay.java
+sources := \
+	src/cc/donm/igpay/Igpay.java \
+	src/cc/donm/igpay/Translator.java
 
 classes := $(patsubst src/%.java,bin/%.class, $(sources))
 
@@ -20,5 +22,5 @@ clean :
 	rm -rf bin
 
 
-$(classes) : bin/%.class : src/%.java
-	javac -d bin $<
+bin/%.class : $(sources)
+	javac -d bin $^

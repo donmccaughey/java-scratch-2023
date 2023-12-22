@@ -20,5 +20,6 @@ clean :
 	rm -rf bin
 
 
-$(classes) : bin/%.class : src/%.java
-	javac -d bin $<
+bin/%.class : $(sources)
+	javac -d bin $^
+
