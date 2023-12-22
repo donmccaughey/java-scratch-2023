@@ -3,7 +3,10 @@
 
 sources := \
 	src/cc/donm/igpay/Igpay.java \
-	src/cc/donm/igpay/Translator.java
+	src/cc/donm/igpay/Space.java \
+	src/cc/donm/igpay/Text.java \
+	src/cc/donm/igpay/Translator.java \
+	src/cc/donm/igpay/Word.java
 
 classes := $(patsubst src/%.java,bin/%.class, $(sources))
 
