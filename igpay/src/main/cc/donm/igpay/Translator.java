@@ -40,18 +40,19 @@ public class Translator {
         var first = word.charAt(0);
         if (isVowel(first)) {
             return word + "way";
-        } else {
-            if (word.length() == 1) {
-                return word + "ay";
-            }
-            if (Character.isUpperCase(first)) {
-                return word.substring(1, 2).toUpperCase()
-                        + word.substring(2) 
-                        + Character.toLowerCase(first) + "ay";
-            } else {
-                return word.substring(1) + first + "ay";
-            }
         }
+
+        if (word.length() == 1) {
+            return word + "ay";
+        }
+
+        if (Character.isUpperCase(first)) {
+            return word.substring(1, 2).toUpperCase()
+                    + word.substring(2)
+                    + Character.toLowerCase(first) + "ay";
+        }
+
+        return word.substring(1) + first + "ay";
     }
 
     public static String translate(Text text) {
