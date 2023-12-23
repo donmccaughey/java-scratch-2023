@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Translator {
+    public static final Pattern CONSONANTS = Pattern.compile("^[^aeiou]+", Pattern.CASE_INSENSITIVE);
     public static final Pattern SPLIT = Pattern.compile("\\w+|\\W+");
 
     public static boolean isVowel(char ch) {
@@ -16,6 +17,15 @@ public class Translator {
             case 'a', 'e', 'i', 'o', 'u' -> true;
             default -> false;
         };
+    }
+
+    public static String leadingConsonants(String word) {
+        var matcher = CONSONANTS.matcher(word);
+        if (matcher.find()) {
+            return matcher.group();
+        } else {
+            return "";
+        }
     }
 
     public static List<Text> tokenize(String line) {
@@ -46,13 +56,17 @@ public class Translator {
             return word + "ay";
         }
 
+        var prefix = leadingConsonants(word);
+        var suffix = word.substring(prefix.length());
+
         if (Character.isUpperCase(first)) {
-            return word.substring(1, 2).toUpperCase()
-                    + word.substring(2)
-                    + Character.toLowerCase(first) + "ay";
+            return Character.toUpperCase(suffix.charAt(0))
+                    + suffix.substring(1)
+                    + prefix.toLowerCase()
+                    + "ay";
         }
 
-        return word.substring(1) + first + "ay";
+        return suffix + prefix + "ay";
     }
 
     public static String translate(Text text) {
