@@ -6,13 +6,13 @@ Java ecosystem, including Java 21, Maven, Spring and Spring Boot.
 
 ## Projects
 
-- [`hello`](./blob/main/hello) - a "Hello world!" command line app
-- [`igpay`](./blob/main/igpay) - a command line Pig Latin translator
-- [`migpay`](./blob/main/migpay) - the `igpay` app with a Maven build system
+- [`hello`](./hello) - a "Hello world!" command line app
+- [`igpay`](./igpay) - a command line Pig Latin translator
+- [`migpay`](./migpay) - the `igpay` app with a Maven build system
 
 ## License
 
 _Java Scratch 2023_ is available under a [BSD license][40].
 
-[40]: ./blob/main/LICENSE
+[40]: ./LICENSE
 
