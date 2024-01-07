@@ -1,6 +1,6 @@
 package cc.donm.igpay;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +13,7 @@ public class TranslationController {
 
     Translator translator = new Translator();
 
-    @GetMapping("/translation")
+    @PostMapping("/translation")
     public Translation translate(
             @RequestParam(value = "english", defaultValue = "") String english
     )
