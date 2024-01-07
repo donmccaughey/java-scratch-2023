@@ -9,6 +9,7 @@ Java ecosystem, including Java 21, Maven, Spring and Spring Boot.
 - [`hello`](./hello) - a "Hello world!" command line app
 - [`igpay`](./igpay) - a command line Pig Latin translator
 - [`migpay`](./migpay) - the `igpay` app with a Maven build system
+- [`wigpay`](./wigpay) - the `igpay` app as a Spring Boot web app
 
 ## License
 
