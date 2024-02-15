@@ -17,3 +17,11 @@ _Java Scratch 2023_ is available under a [BSD license][40].
 
 [40]: ./LICENSE
 
+## Links
+
+- [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+- [Spring Quickstart Guide](https://spring.io/quickstart)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content)
+- [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service)
+
